@@ -33,7 +33,7 @@ The integration creates two sensors with the next collection date in the
 ## Command-line usage
 
 ```powershell
-adax-calendar "https://www.obecvieska.sk/evt_file.php?file=2590"
+adax-calendar "https://www.obec.sk/evt_file.php?file=3048" #this is just Example link of DOCX Word document file with table with garbage collection dates
 ```
 
 The output is JSON, for example:
