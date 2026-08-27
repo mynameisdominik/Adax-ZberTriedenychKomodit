@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adax-zbertriedenychkomodit"
+version = "0.1.0"
+description = "Parser collection calendars published by ADAX spol. s r.o."
+requires-python = ">=3.11"
+dependencies = ["python-docx>=1.1.0", "requests>=2.31.0"]
+
+[project.scripts]
+adax-calendar = "adax_calendar.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
