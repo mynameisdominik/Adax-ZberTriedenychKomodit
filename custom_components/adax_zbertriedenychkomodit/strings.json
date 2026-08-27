@@ -1,0 +1,18 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "ADAX zber triedených komodít",
+        "description": "Zadajte obec a verejnú URL adresu DOCX kalendára.",
+        "data": {
+          "town": "Obec",
+          "calendar_url": "URL kalendára DOCX"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Dokument sa nedá načítať.",
+      "invalid_document": "Dokument neobsahuje podporovanú tabuľku."
+    }
+  }
+}

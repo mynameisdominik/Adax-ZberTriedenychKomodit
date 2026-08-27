@@ -1,13 +1,13 @@
 # Adax-ZberTriedenychKomodit
 
-Standalone parser for collection calendars published by ADAX spol. s r.o.
+Home Assistant integration for collection calendars published by ADAX spol. s r.o.
 
 The project reads public DOCX calendars and returns collection dates for:
 
 - `Plast, VKM, Kov ob.`
 - `Papier`
 
-It is independent from Home Assistant and from `hacs_waste_collection_schedule`.
+This is a standalone repository and is independent from `hacs_waste_collection_schedule`.
 
 ## Setup
 
@@ -17,7 +17,20 @@ python -m venv .venv
 python -m pip install -e .
 ```
 
-## Usage
+## Home Assistant setup
+
+Install this repository through HACS as a custom repository with type **Integration**.
+After restarting Home Assistant, add **ADAX Zber triedených komodít** through
+Settings > Devices & services > Add integration. Enter the municipality and its
+public DOCX calendar URL.
+
+The integration creates two sensors with the next collection date in the
+`next_collection` attribute:
+
+- `Plast, VKM, Kov ob.`
+- `Papier`
+
+## Command-line usage
 
 ```powershell
 adax-calendar "https://www.obecvieska.sk/evt_file.php?file=2590"
