@@ -53,17 +53,28 @@ class AdaxSensor(CoordinatorEntity, SensorEntity):
         return (upcoming - date.today()).days if upcoming else None
 
     @property
-    def extra_state_attributes(self) -> dict[str, str | None]:
-        upcoming = self._upcoming()
-        return {"next_collection": upcoming.isoformat() if upcoming else None}
+    def extra_state_attributes(self) -> dict[str, str | list[str] | None]:
+        collections = self._upcoming_collections()
+        return {
+            "next_collection": collections[0].isoformat() if collections else None,
+            "upcoming_collections": [
+                collection.isoformat() for collection in collections
+            ],
+        }
+
+    def _upcoming_collections(self) -> list[date]:
+        today = date.today()
+        dates = sorted(
+            {
+                item.date
+                for item in self.coordinator.data or []
+                if isinstance(item, Collection)
+                and item.commodity == self._commodity
+                and item.date >= today
+            }
+        )
+        return dates
 
     def _upcoming(self) -> date | None:
-        today = date.today()
-        dates = [
-            item.date
-            for item in self.coordinator.data or []
-            if isinstance(item, Collection)
-            and item.commodity == self._commodity
-            and item.date >= today
-        ]
-        return min(dates) if dates else None
+        dates = self._upcoming_collections()
+        return dates[0] if dates else None
